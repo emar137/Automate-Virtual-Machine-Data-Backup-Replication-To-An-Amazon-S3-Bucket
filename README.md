@@ -8,4 +8,34 @@
 * Backup Compression: Compress the backup files to save storage space using the tar command with gzip (tar -czf) or other compression methods.
 * Logging: Create log files to record backup operations, including start time, end time, and any errors encountered during the backup.
 * AWS Integration: Seamlessly integrate with the AWS Command Line  Interface (CLI) for secure and efficient uploads to Amazon S3.
-  
+ ## prerequisites
+ * Bash scripting
+ * Aws cli  
+ * Ec2 instance(ubuntu)
+ * S3 bucket
+## Step 1
+* Create an IAM role (s3-bash-role) with the Permission policy "AmazonS3FullAccess"
+* Attach the IAM role to the EC2 instance
+## Step 2
+* install Aws cli on Ec2 instance(ubuntu). https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+    ```
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zi
+    ```
+    ```
+    sudo apt install unzip
+    ```
+    ```
+    unzip awscliv2.zip
+    ```
+    ```
+     sudo ./aws/install
+    ```
+* use the following command to show where the package was installed
+    ```
+    which aws
+    ```
+* run the following command to find out the AWS CLI version installed
+    ```
+    aws --version
+    ```
+    
