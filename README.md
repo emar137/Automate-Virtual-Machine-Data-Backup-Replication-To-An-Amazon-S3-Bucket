@@ -87,12 +87,22 @@
               echo "File upload to S3 failed."
     fi
    ```
-  * Add executable permission for the file
+ * Add executable permission for the file
     ```
     chmod +x backup.sh  
     ```
-  * Run the script
+  * Run the script (Note:I run the script manually but in the next step I will run it automatically)
     ``` 
     ./backup.sh
     ```
-    
+## Step 5
+* I need to run a schedule by using root permissions so I will use crontab file.
+  ```
+  sudo vim /etc/crontab
+  ```
+* Add This entry to it.
+  ```
+  0 0  * * *  root /home/ubuntu/backup-script.sh
+  ```
+* That entry will run the backup script automatically every day at midnight
+
