@@ -17,7 +17,7 @@
 * Create an IAM role (s3-bash-role) with the Permission policy "AmazonS3FullAccess"
 * Attach the IAM role to the EC2 instance
 ## Step 2
-* install Aws cli on Ec2 instance(ubuntu). https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+* connect on Ec2 instance(ubuntu) through ssh and install aws cli . https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
     ```
     curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zi
     ```
@@ -30,12 +30,16 @@
     ```
      sudo ./aws/install
     ```
-* use the following command to show where the package was installed
+* Use the following command to show where the package was installed
     ```
     which aws
     ```
-* run the following command to find out the AWS CLI version installed
+* Run the following command to find out the AWS CLI version installed
     ```
     aws --version
     ```
-    
+## Step 3 
+* Create an S3 bucket in AWS through cli
+  ```
+  aws s3api create-bucket --bucket s3-new-bash-course --region us-east-1
+ ```
