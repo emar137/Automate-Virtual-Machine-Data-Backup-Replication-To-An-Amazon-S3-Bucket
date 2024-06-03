@@ -106,4 +106,12 @@
   ```
 * That entry will run the backup script automatically every day at midnight
 ## Step 6
-*
+*How to delete the schedule by removing this entry from crontab file
+  ```
+  0 0 * * *  root  /home/ubuntu/backup-script.sh
+  ```
+* To delete s3bucket on aws
+   ```
+    aws s3 rb s3://s3-new-bash-course --force
+   ```
+
