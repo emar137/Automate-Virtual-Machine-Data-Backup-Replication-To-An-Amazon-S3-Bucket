@@ -102,7 +102,8 @@
   ```
 * Add This entry to it.
   ```
-  0 0  * * *  root /home/ubuntu/backup-script.sh
+  0 0 * * *  root  /home/ubuntu/backup-script.sh
   ```
 * That entry will run the backup script automatically every day at midnight
-
+## Step 6
+*
