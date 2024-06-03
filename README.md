@@ -42,4 +42,57 @@
 * Create an S3 bucket in AWS through cli
   ```
   aws s3api create-bucket --bucket s3-new-bash-course --region us-east-1
- ```
+  ```
+## Step 4
+* Create the script 
+     ```
+        vim backup.sh  
+     ```
+     ```
+     #!/bin/bash
+    time=$(date +%m-%d-%y_%H_%M_%S)
+    Backup_file=/home/ubuntu/bash 
+    Dest=/home/ubuntu/backup
+    filename=file-backup-$time.tar.gz
+    LOG_FILE="/home/ubuntu/backup/logfile.log"
+    S3_BUCKET="s3-new-bash-course" 
+    FILE_TO_UPLOAD="$Dest/$filename"
+
+     
+    if ! command -v aws &> /dev/null; then
+      echo "AWS CLI is not installed. Please install it first."
+      exit 2
+    fi
+
+     
+    if [ $? -ne 2 ]
+      then
+      if [ -f $filename ]
+          then
+              echo "Error file $filename already exist!" | tee -a "$LOG_FILE"
+          else
+              tar -czvf "$Dest/$filename" "$Backup_file" 
+              echo "Backup completed successfully. Backup file: $Dest/$filename " | tee -a "$LOG_FILE"
+              echo
+              aws s3 cp "$FILE_TO_UPLOAD" "s3://$S3_BUCKET/" 
+      fi
+    fi
+
+     
+    if [ $? -eq 0 ]
+         then
+              echo
+              echo "File uploaded successfully to the S3 bucket: $S3_BUCKET"
+        else
+              echo "File upload to S3 failed."
+    fi
+   ```
+  * Add executable permission for the file
+    ```
+    chmod +x backup.sh  
+    ```
+  * Run the script
+    ``` 
+    ./backup.sh
+    ```
+    
