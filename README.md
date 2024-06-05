@@ -41,7 +41,7 @@
 ## Step 3 
 * Create an S3 bucket in AWS through cli
   ```
-  aws s3api create-bucket --bucket s3-new-bash-course --region us-east-1
+  aws s3api create-bucket --bucket s3-new-bash-course 
   ```
 ## Step 4
 * Create the script 
