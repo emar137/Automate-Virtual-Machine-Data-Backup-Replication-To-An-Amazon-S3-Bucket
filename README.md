@@ -77,7 +77,7 @@
             then
                     if [ -f $Dest/$filename ]
                             then
-                                    echo " This file is already exit: error | tee -a $log_file "
+                                    echo " This file is already exit: error "| tee -a "$log_file "
                                     exit 2
 
 
