@@ -97,9 +97,7 @@
               echo "File uploaded successfully to the S3 bucket: $S3_BUCKET"
          else
               echo "File upload to S3 failed."
-    fi
-
-        
+    fi   
    ```
  * Add executable permission for the file
     ```
