@@ -41,7 +41,7 @@
 ## Step 3 
 * Create an S3 bucket in AWS through cli
   ```
-  aws s3api create-bucket --bucket s3-new-bash-course 
+  aws s3api create-bucket --bucket  s3-backup-456
   ```
 ## Step 4
 * Create the script 
@@ -116,5 +116,5 @@
   ```
 * To delete s3bucket on aws
    ```
-    aws s3 rb s3://s3-new-bash-course --force
+    aws s3 rb s3://s3-backup-456 --force
    ```
