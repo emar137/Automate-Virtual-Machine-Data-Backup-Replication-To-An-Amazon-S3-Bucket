@@ -49,43 +49,47 @@
         vim backup.sh  
      ```
      ```
-     #!/bin/bash
-    time=$(date +%m-%d-%y_%H_%M_%S)
-    Backup_file=/home/ubuntu/bash 
-    Dest=/home/ubuntu/backup
-    filename=file-backup-$time.tar.gz
-    LOG_FILE="/home/ubuntu/backup/logfile.log"
-    S3_BUCKET="s3-new-bash-course" 
-    FILE_TO_UPLOAD="$Dest/$filename"
+    #!/bin/bash
 
-     
+    #Directory path that you want to backup
+    Backup_file=/home/ubuntu/bash
+
+    #Directory path that we store backups file on it
+    Dest=/home/ubuntu/backup
+
+    #Backup file name
+    time=$(date +%m-%d-%y_%H_%M_%S)
+    filename=file-backup-$time.tar.gz
+
+    #Log file
+    log_file=/home/ubuntu/backup/logfile.log
+
+    #S3 bucket name
+    S3_BUCKET="s3-backup-456"
+
+    # checks if the AWS Command Line Interface (CLI) is installed on the system
+
     if ! command -v aws &> /dev/null; then
       echo "AWS CLI is not installed. Please install it first."
       exit 2
     fi
-
-     
     if [ $? -ne 2 ]
-      then
-      if [ -f $filename ]
-          then
-              echo "Error file $filename already exist!" | tee -a "$LOG_FILE"
-          else
-              tar -czvf "$Dest/$filename" "$Backup_file" 
-              echo "Backup completed successfully. Backup file: $Dest/$filename " | tee -a "$LOG_FILE"
-              echo
-              aws s3 cp "$FILE_TO_UPLOAD" "s3://$S3_BUCKET/" 
-      fi
-    fi
+            then
+                    if [ -f $Dest/$filename ]
+                            then
+                                    echo " This file is already exit: error | tee -a $log_file "
+                                    exit 2
 
-     
-    if [ $? -eq 0 ]
-         then
-              echo
-              echo "File uploaded successfully to the S3 bucket: $S3_BUCKET"
-        else
-              echo "File upload to S3 failed."
-    fi
+
+                            else
+                                    tar -czvf "$Dest/$filename"  "$Backup_file"
+                                    echo
+                                    echo "Backup completed successfully. Backup file: $filename " | tee -a "$log_file"
+                                     echo
+                                    # upload backup file on s3 bucket
+                                    aws s3 cp "$Dest/$filename"  "s3://$S3_BUCKET/"
+                    fi
+    fi     
    ```
  * Add executable permission for the file
     ```
