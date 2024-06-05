@@ -89,7 +89,17 @@
                                     # upload backup file on s3 bucket
                                     aws s3 cp "$Dest/$filename"  "s3://$S3_BUCKET/"
                     fi
-    fi     
+    fi
+
+    if [ $? -eq 0 ]
+         then
+              echo
+              echo "File uploaded successfully to the S3 bucket: $S3_BUCKET"
+         else
+              echo "File upload to S3 failed."
+    fi
+
+        
    ```
  * Add executable permission for the file
     ```
