@@ -54,7 +54,7 @@
     #Directory path that you want to backup
     Backup_file=/home/ubuntu/bash
 
-    #Directory path that we store backups file on it
+    #Directory path that we store backup files on it
     Dest=/home/ubuntu/backup
 
     #Backup file name
